@@ -1,0 +1,38 @@
+{% extends 'navigationvar.html'%}
+{% block body%}
+
+{% ifequal error "no" %}
+<script>
+	alert('Record in Successfully');
+	window.location=('{% url 'view_enquiry' %}');
+</script>
+{% endifequal  %}
+
+{% ifequal error "yes" %}
+<script>
+	alert('Invalid Record ,Try again');
+</script>
+{% endifequal %}
+<div class="container">
+<h1 class="text-center text-primary font-weight-bold">Add Enquiry</h1>
+<form method="post">
+    {% csrf_token %}
+    <label><b>Name</b></label>
+    <input type="text" name="name" class="form-control" placeholder="Name" required><br>
+    <label><b>Contact</b></label>
+    <input type="text" class="form-control"  name="contact" placeholder="mobile" required>
+    <label><b>Email</b></label>
+    <input type="email" class="form-control"  name="emailid" placeholder="user@gmail.com" required>
+     <label><b>Age</b></label>
+    <input type="text" class="form-control"  name="age" placeholder="age" required>
+    <label><b>Gender</b></label>
+    <input type="radio" value="Male" name="gender" placeholder="Gender" required>Male
+     <input type="radio" value="Female"  name="gender" placeholder="Gender" required>Female
+
+    <br>
+    <input type="submit" class="from-control btn btn-primary" value="Submit">
+</form>
+
+
+</div>
+{% endblock %}

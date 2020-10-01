@@ -1,0 +1,37 @@
+{% extends 'navigationvar.html'%}
+{% block body%}
+
+{% ifequal error "no" %}
+<script>
+	alert('Record in Successfully');
+	window.location=('{% url 'view_equipment' %}');
+</script>
+{% endifequal  %}
+
+{% ifequal error "yes" %}
+<script>
+	alert('Invalid Record ,Try again');
+</script>
+{% endifequal %}
+<div class="container">
+<h1 class="text-center text-primary font-weight-bold">Add Equipment</h1>
+<form method="post">
+    {% csrf_token %}
+    <label><b>Equipment Name</b></label>
+    <input type="text" name="name" class="form-control"  required><br>
+    <label><b>Price(In $)</b></label>
+    <input type="text" class="form-control"  name="price"  required>
+    <label><b>Unit</b></label>
+    <input type="text" class="form-control"  name="unit"  required>
+     <label><b>Purchase Date</b></label>
+    <input type="date" class="form-control"  name="date"  >
+    <label><b>Description</b></label>
+    <textarea class="form-control" name="description"></textarea>
+
+    <br>
+    <input type="submit" class="from-control btn btn-primary" value="Submit">
+</form>
+
+
+</div>
+{% endblock %}

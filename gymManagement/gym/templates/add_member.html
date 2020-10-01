@@ -1,0 +1,49 @@
+{% extends 'navigationvar.html'%}
+{% block body%}
+
+{% ifequal error "no" %}
+<script>
+	alert('Record in Successfully');
+	window.location=('{% url 'view_member' %}');
+</script>
+{% endifequal  %}
+
+{% ifequal error "yes" %}
+<script>
+	alert('Invalid Record ,Try again');
+</script>
+{% endifequal %}
+<div class="container">
+<h1 class="text-center text-primary font-weight-bold">Add New Member</h1>
+<form method="post">
+    {% csrf_token %}
+    <label><b>Name</b></label>
+    <input type="text" name="name" class="form-control" required><br>
+    <label><b>Contact</b></label>
+    <input type="text" class="form-control"  name="contact" required>
+    <label><b>Email</b></label>
+    <input type="email" class="form-control"  name="emailid"  required>
+     <label><b>Age</b></label>
+    <input type="text" class="form-control"  name="age"  required>
+    <label><b>Gender</b></label><br>
+    <input type="radio" value="Male" name="gender" required>Male
+     <input type="radio" value="Female"  name="gender"  required>Female<br>
+      <label><b>Plan Name</b></label>
+        <select name="plan" class="form-control">
+             {% for i in plan %}
+            <option value="{{i.name}}">{{i.name}}</option>
+             {% endfor %}
+        </select>
+    <label><b>JoinDate</b></label>
+    <input type="date" class="form-control"  name="joindate"  required>
+    <label><b>Expiredate</b></label>
+    <input type="date" class="form-control"  name="expiredate" required>
+     <label><b>InitalAmmount(In $)</b></label>
+    <input type="text" class="form-control"  name="initial" required>
+    <br>
+    <input type="submit" class="from-control btn btn-primary" value="Submit">
+</form>
+
+
+</div>
+{% endblock %}

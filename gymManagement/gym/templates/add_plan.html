@@ -1,0 +1,34 @@
+{% extends 'navigationvar.html'%}
+{% block body%}
+
+{% ifequal error "no" %}
+<script>
+	alert('Record in Successfully');
+	window.location=('{% url 'view_plan' %}');
+</script>
+{% endifequal  %}
+
+{% ifequal error "yes" %}
+<script>
+	alert('Invalid Record ,Try again');
+</script>
+{% endifequal %}
+<div class="container">
+<h1 class="text-center text-primary font-weight-bold">Add Plan</h1>
+<form method="post">
+    {% csrf_token %}
+    <label><b>Plan Name</b></label>
+    <input type="text" name="name" class="form-control"  required><br>
+    <label><b>Amount(In $)</b></label>
+    <input type="text" class="form-control"  name="amount"  required>
+    <label><b>Duration(In Months)</b></label>
+    <input type="text" class="form-control"  name="duration"  required>
+
+
+    <br>
+    <input type="submit" class="from-control btn btn-primary" value="Submit">
+</form>
+
+
+</div>
+{% endblock %}
